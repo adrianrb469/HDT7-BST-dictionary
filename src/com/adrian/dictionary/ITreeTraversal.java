@@ -3,12 +3,9 @@
  */
 package com.adrian.dictionary;
 
-/**
- * @author MAAG
- *
- */
-public interface ITreeTraversal<V> {
+public interface ITreeTraversal<K,V> {
 
-    void Walk(V value);
+    void Walk(K key, V value);
+
 
 }

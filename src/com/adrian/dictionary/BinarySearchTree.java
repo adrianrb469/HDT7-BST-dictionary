@@ -170,18 +170,18 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
     }
 
     @Override
-    public void inOrder(ITreeTraversal<V> traversal) {
+    public void inOrder(ITreeTraversal<K,V> traversal) {
         internalInOrder(root, traversal);
     }
 
     @Override
-    public void preOrder(ITreeTraversal<V> traversal) {
+    public void preOrder(ITreeTraversal<K,V> traversal) {
         internalPreOrder(root, traversal);
 
     }
 
     @Override
-    public void postOrder(ITreeTraversal<V> traversal) {
+    public void postOrder(ITreeTraversal<K,V> traversal) {
         internalPostOrder(root, traversal);
     }
 
@@ -214,19 +214,19 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
 
     }
 
-    private void internalInOrder(TreeNode<K, V> actual, ITreeTraversal<V> traversal) {
+    private void internalInOrder(TreeNode<K, V> actual, ITreeTraversal<K,V> traversal) {
         if (actual != null) {
             internalInOrder(actual.getLeft(), traversal);
 
-            traversal.Walk(actual.getValue());
+            traversal.Walk(actual.getId(),actual.getValue());
 
             internalInOrder(actual.getRight(), traversal);
         }
     }
 
-    private void internalPreOrder(TreeNode<K, V> actual, ITreeTraversal<V> traversal) {
+    private void internalPreOrder(TreeNode<K, V> actual, ITreeTraversal<K,V> traversal) {
         if (actual != null) {
-            traversal.Walk(actual.getValue());
+            traversal.Walk(actual.getId(), actual.getValue());
 
             internalPreOrder(actual.getLeft(), traversal);
 
@@ -234,14 +234,14 @@ public class BinarySearchTree<K, V> implements IBinarySearchTree<K, V> {
         }
     }
 
-    private void internalPostOrder(TreeNode<K, V> actual, ITreeTraversal<V> traversal) {
+    private void internalPostOrder(TreeNode<K, V> actual, ITreeTraversal<K,V> traversal) {
         if (actual != null) {
 
             internalPostOrder(actual.getLeft(), traversal);
 
             internalPostOrder(actual.getRight(), traversal);
 
-            traversal.Walk(actual.getValue());
+            traversal.Walk(actual.getId(),actual.getValue());
         }
     }
 

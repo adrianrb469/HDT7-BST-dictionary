@@ -4,3 +4,5 @@ homework,tarea,devoirs
 woman,mujer,femme
 town,pueblo,ville
 yes,si,Oui
+my,mi,mon
+The,el,le

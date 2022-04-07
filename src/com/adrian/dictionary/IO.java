@@ -1,11 +1,13 @@
 package com.adrian.dictionary;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 
 public class IO {
 
-    private final String DICT_PATH = "src//com//adrian//dictionary//dictionary.csv";
+    private final String DICT_PATH = "src//com//adrian//dictionary//dictionary.txt";
     private final String TEXT_PATH = "src//com//adrian//dictionary//text.txt";
 
     public IO() {
@@ -13,7 +15,7 @@ public class IO {
     }
 
     public BinarySearchTree readDictionary(String language) {
-        String line = "";
+        String line;
         String key = "";
         BinarySearchTree bst = new BinarySearchTree(new StringComparator());
         try {
@@ -36,5 +38,33 @@ public class IO {
         }
         return bst;
     }
+
+    public String[] getWords(){
+        String line = "";
+        String file = "";
+        String[] words;
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(TEXT_PATH));
+            while ((line = br.readLine()) != null) {
+                file += line + " " + "/n" + " ";
+            }
+            words = file.split(" ");
+            return words;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void addWord(String word){
+        try{
+            FileWriter fw = new FileWriter(DICT_PATH, true);
+            fw.write("\n"+word);
+            fw.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

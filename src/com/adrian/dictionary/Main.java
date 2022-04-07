@@ -34,18 +34,54 @@ public class Main {
                     break;
                 case "2":
                     String translation[] = translator.translate(io.getWords(), englishDict, frenchDict);
-                    for (int x = 0; x< translation.length; x ++ ){
-                        System.out.print(" "+translation[x]);
+                    for (int x = 0; x < translation.length; x++) {
+                        System.out.print(" " + translation[x]);
                     }
                     break;
                 case "3":
                     System.out.println("Format: \"english,spanish,french\"");
                     option = input.nextLine();
+                    String[] word = option.split(",");
+                    englishDict.insert(word[0], word[1]);
+                    frenchDict.insert(word[2], word[1]);
                     io.addWord(option);
                     break;
+                case "4":
+                    System.out.println("1 = English word 2 = French word");
+                    option = input.nextLine();
+                    if (option.equals("1")) {
+                        englishDict.inOrder(new StringTraversal<>());
+                        System.out.println("Format: \"english,newSpanish\"");
+                        option = input.nextLine();
+                        String[] editWord = option.split(",");
+                        // deletes the previous word before inserting the new one
+                        englishDict.delete(editWord[0]);
+                        englishDict.insert(editWord[0], editWord[1]);
+                    } else {
+                        englishDict.inOrder(new StringTraversal<>());
+                        System.out.println("Format: \"french,newSpanish\"");
+                        option = input.nextLine();
+                        String[] editWord = option.split(",");
+                        frenchDict.insert(editWord[0], editWord[1]);
+                    }
+                    break;
+                case "5":
+                    System.out.println("1 = English word 2 = French word");
+                    option = input.nextLine();
+                    if (option.equals("1")) {
+                        englishDict.inOrder(new StringTraversal<>());
+                        System.out.println("Enter the english word");
+                        option = input.nextLine();
+                        englishDict.delete(option);
+                    } else {
+                        englishDict.inOrder(new StringTraversal<>());
+                        System.out.println("Enter the french word");
+                        option = input.nextLine();
+                        frenchDict.delete(option);
+                    }
+                    break;
             }
-            englishDict = io.readDictionary("English");
-            frenchDict = io.readDictionary("French");
+
 
         }
 
